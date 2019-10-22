@@ -1,3 +1,19 @@
+中文编码设置
+
+查看服务器端编码sql
+
+select userenv('language') from dual
+
+我实际查到的结果为:AMERLCAN_AMERLCA.ZHS16GBK
+
+计算机->属性->高级系统设置->环境变量->新建
+
+设置变量名:NLS_LANG,变量值:
+
+AMERLCAN_AMERLCA.ZHS16GBK
+————————————————
+版权声明：本文为CSDN博主「tang_cong」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/tang_cong/article/details/79361544
 http://www.boydata.com/content/uploadfile/201503/2a461426336633.zip
 http://www.en8848.com.cn/cet4/words/10wzch/
 (1)A Question of Rights
