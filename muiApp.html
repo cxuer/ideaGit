@@ -1,0 +1,477 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>手持终端入库</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!-- App自定义的css -->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<style>
+			.table-head{background-color:rgba(0,0,0,.1);height:22px}
+					.table-body{width:100%; height:520px;overflow-y:scroll;}
+					.table-head table,.table-body table{width:100%;}
+					.table-body table tr:nth-child(2n+1){background-color:#f2f2f2;}
+					.space{height: 0px;}
+</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">手持终端入库</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-row mui-search">
+				<input type="search" id="barCode" class=" mui-search mui-input-clear" placeholder="扫描库位条码搜索库位">
+			</div>
+			<div class="table-head">
+				<table>
+					<colgroup>
+						<col style="width: 40%;" />
+						<col style="width: 60%;" />
+					</colgroup>
+					<thead >
+						<tr >
+							<th>库位号</th>
+							<th>册条码</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="table-body" id="theight">
+				<table>
+					<colgroup>
+						<col style="width: 40%;" />
+						<col style="width: 60%;" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>扫描册条码</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>扫描册条码</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B001</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B002</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B003</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B004</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B005</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B006</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B007</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B008</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+						<tr>
+							<td>C001-B015</td>
+							<td>XXX-XX-XXX2019000001</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+		<div style="text-align:center">
+		   <button type="button" id='confirmBtn' class="mui-btn mui-btn-primary" data-loading-text="提交中"
+		    data-loading-icon-position="right">提交(SUBMIT)</button>                      
+		 </div>
+		
+		<script src="../js/mui.js">
+		</script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+			// function getViewportSize () {
+			// $mobile={
+			//    width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+			//    height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+			// }
+
+			var barcode = document.getElementById("barCode");
+			var clientWidth=document.documentElement.clientWidth;
+			var clientHeight=document.documentElement.clientHeight;
+			document.getElementById( "theight" ).style.height = (clientHeight-188) + 'px';
+			barcode.addEventListener('keypress', function() {
+				if (event.keyCode == 13) {
+					mui.toast('你输入的内容为1：'+this.value+clientHeight);
+				}
+			});
+
+			document.getElementById("confirmBtn").addEventListener('tap', function() {
+				var btnArray = ['否', '是'];
+				var tag = false;
+				mui.confirm('MUI是个好框架，确认？', 'Hello MUI', btnArray, function(e) {
+					if (e.index == 1) {
+						tag = true;
+					}
+					var msg = tag == true ? '你刚确认MUI是个好框架' : 'MUI没有得到你的认可，继续加油';
+					mui.toast(msg);
+				})
+			});
+
+			mui(document.body).on('tap', '.mui-btn', function(e) {
+				mui(this).button('loading');
+				setTimeout(function() {
+					mui(this).button('reset');
+					mui.toast('提交成功！');
+				}.bind(this), 2000);
+			});
+		</script>
+	</body>
+
+</html>
