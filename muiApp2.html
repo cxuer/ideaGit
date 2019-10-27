@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>手持终端入库</title>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<!--标准mui.css-->
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<!-- App自定义的css -->
+	<link rel="stylesheet" type="text/css" href="../css/app.css" />
+	<style>
+		.table-head {
+			background-color: rgba(0, 0, 0, .1);
+			height: 22px
+		}
+
+		.table-body {
+			width: 100%;
+			height: 520px;
+			overflow-y: scroll;
+		}
+
+		.table-head table,
+		.table-body table {
+			width: 100%;
+		}
+
+		.table-body table tr:nth-child(2n+1) {
+			background-color: #f2f2f2;
+		}
+
+		.space {
+			height: 0px;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">手持终端入库</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-input-row mui-search">
+			<input type="search" id="barCode" class=" mui-search mui-input-clear" placeholder="扫描库位条码搜索库位">
+		</div>
+		<form id="tfm">
+			<div class="table-head">
+				<table>
+					<colgroup>
+						<col style="width: 40%;" />
+						<col style="width: 60%;" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>库位号</th>
+							<th>册条码</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="table-body" id="theight">
+				<table id="otable">
+					<colgroup>
+						<col style="width: 40%;" />
+						<col style="width: 60%;" />
+					</colgroup>
+					<tbody id="otbody">
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="text-align:center">
+				<button type="button" id="btncommit" class="mui-btn mui-btn-primary" data-loading-text="提交中"
+					data-loading-icon-position="right" disabled=true>提交(SUBMIT)</button>
+			</div>
+		</form>
+	</div>
+	<script src="../js/mui.js">
+	</script>
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+
+
+		var barcode = document.getElementById("barCode");
+		var clientWidth = document.documentElement.clientWidth;
+		var clientHeight = document.documentElement.clientHeight;
+
+		document.getElementById("theight").style.height = (clientHeight - 188) + 'px';
+
+		barcode.addEventListener('keypress', function () {
+			if (event.keyCode == 13) {
+				mui.toast('你输入的内容为1：' + this.value + clientHeight);
+				//search();
+				document.getElementById("btncommit").removeAttribute('disabled');
+				trClick();
+			}
+
+		});
+
+		document.getElementById("btncommit").addEventListener('tap', function () {
+
+			// mui.toast(elements[0].innerHTML);
+			var btnArray = ['否', '是'];
+			var tag = false;
+			mui.confirm('MUI是个好框架，确认？', 'Hello MUI', btnArray, function (e) {
+				if (e.index == 1) {
+					tag = true;
+				}
+				var msg = tag == true ? '你刚确认MUI是个好框架' : 'MUI没有得到你的认可，继续加油';
+				mui.toast(msg);
+			})
+		});
+
+		var trArrs = document.getElementById('otable').getElementsByTagName('tr');
+		var elmts = document.querySelectorAll("td[barcode]");
+		var emptyEle = document.querySelector("td[isEmpty=true]");
+
+		function isEmptyinnerHtml(obj) {
+			return obj.innerHTML.length > 0 ? false : true;
+		}
+		function findNextElement(obj) {
+			var lens = trArrs.length - 1;
+			var parent = obj.parentElement;
+			var seq = parent.getAttribute('idx');
+			if (seq < lens) {
+				debugger;
+				var nextEle = parent.nextElementSibling;
+				var nextTr = nextEle.getElementsByTagName('td')[1];
+				var isEmpty = isEmptyinnerHtml(nextTr);
+				nextTr.setAttribute('isEmpty', isEmpty);
+				if (isEmpty) {
+					nextTr.focus();
+					nextTr.innerHTML = '';
+					if (document.hasFocus()) {
+						mui.toast(seq + " : " + nextTr.innerHTML + "innerHtml :" + isEmpty);
+					}
+				} else {
+					nextTr.setAttribute('isEmpty', isEmpty);
+					nextTr.setAttribute('contentEditable', false);
+					findNextElement(nextTr);
+					//document.querySelector("td[isEmpty=true]").focus();
+				}
+			}
+		}
+
+		function trClick() {
+			var counts = trArrs.length;
+			for (var i = 0; i < counts; i++) {
+				var objTr = trArrs[i];
+				objTr.setAttribute('idx', i);
+				var tds = objTr.getElementsByTagName('td');
+				tds[0].setAttribute('name', 'locationId');
+				var barcode = tds[1];
+				barcode.setAttribute('isEmpty', barcode.innerHTML.length > 0 ? false : true);
+				barcode.setAttribute('barCodeId', 'B000' + i);
+				barcode.setAttribute('contentEditable', true);
+				barcode.addEventListener('keypress', function () {
+					if (event.keyCode == 13) {
+						debugger;
+						var mylength = this.innerHTML.length;
+						var isEmpty = isEmptyinnerHtml(this);
+						this.setAttribute('isEmpty', isEmpty);
+						if (isEmpty) {
+							mui.toast("请扫描册条码！");
+							this.focus();
+							this.innerHTML = '';
+						} else {
+							this.setAttribute('contentEditable', false);
+							findNextElement(this);
+						}
+						//屏蔽回车键输入
+						event.returnValue = false;
+					}
+
+				});
+			}
+		}
+
+		function search() {
+			var table = document.getElementById('otable');
+			var tbody = document.getElementById('otbody');
+			for (var i = 0; i < 3; i++) {
+				var tr = document.createElement('tr');
+				for (var t = 1; t <= 2; t++) {
+					var td = document.createElement('td');
+					td.innerHTML = 'C001-B000' + i;
+					if (t == 2) {
+						td.innerHTML = 'XXX-XX-XXX201900000' + i;
+					}
+					tr.appendChild(td);
+				}
+				tbody.appendChild(tr);
+			}
+			table.appendChild(tbody);
+		}
+
+		mui(document.body).on('tap', '.mui-btn', function (e) {
+			mui(this).button('loading');
+			setTimeout(function () {
+				mui(this).button('reset');
+				mui.toast('提交成功！');
+			}.bind(this), 2000);
+		});
+	</script>
+</body>
+
+</html>
