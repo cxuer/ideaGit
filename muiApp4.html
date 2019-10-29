@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>终端入库</title>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<!--标准mui.css-->
+	<link rel="stylesheet" href="css/mui.min.css">
+	<!-- App自定义的css -->
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+	<style>
+		.table-head {
+			background-color: rgba(0, 0, 0, .1);
+			height: 22px
+		}
+
+		.table-body {
+			width: 100%;
+			height: 520px;
+			overflow-y: scroll;
+		}
+
+		.table-head table,
+		.table-body table {
+			width: 100%;
+		}
+
+		.table-body table tr:nth-child(2n+1) {
+			background-color: #f2f2f2;
+		}
+
+    </style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title" id="docTitle">终端入库</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-input-row mui-search">
+			<input type="search" id="locationCodeText" class=" mui-search mui-input-clear" placeholder="扫描库位条码搜索">
+		</div>
+		<form id="frmStorage">
+			<div class="table-head">
+				<table>
+					<colgroup>
+						<col style="width: 40%;" />
+						<col style="width: 60%;" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>库位号</th>
+							<th>册条码</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="table-body" id="docDiv">
+				<table id="docTable">
+					<colgroup>
+						<col style="width: 40%;" />
+						<col style="width: 60%;" />
+					</colgroup>
+					<tbody id="docTbody">
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td id="test"></td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>C0001-00001</td>
+							<td>XXX-XX-XXX201900000</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="text-align:center">
+				<button class="mui-btn mui-btn-primary" data-loading-icon-position="right" data-loading-text="提交中"
+                        id="frmSubmit" type="button">提交(SUBMIT)</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/mui.js" ></script>
+	<script src="muiApp.js" ></script>
+</body>
+
+</html>
