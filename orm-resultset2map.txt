@@ -1,0 +1,195 @@
+public void update1(){
+	Connection conn=null;
+	PreparedStatement ps=null;
+	try{
+		String sql="select * from test where id=? and name=?";
+		conn=DriverManager.getConnection(url,user,passwd);
+		ps=conn.preparedStatement(sql);
+		ps.setInt(1,10);
+		ps.setString(2,"name");
+		ps.executeUpdate();
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}finally{
+		ps.close();
+		conn.close();
+	}
+}
+
+
+public void update2(String sql,Object...args){
+	Connection conn=null;
+	PreparedStatement ps=null;
+	try{
+		conn=DriverManager.getConnection(url,user,passwd);
+		ps=conn.preparedStatement(sql);
+		for(int 1=0;i<args.length;i++){
+			ps.setObject(i+1,args[i]);
+		}
+		ps.executeUpdate();
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}finally{
+		ps.close();
+		conn.close();
+	}
+}
+
+public void update3(String sql,Object...args){
+	Connection conn=null;
+	PreparedStatement ps=null;
+	try{
+		conn=DriverManager.getConnection(url,user,passwd);
+		ps=conn.preparedStatement(sql);
+		for(int 1=0;i<args.length;i++){
+			ps.setObject(i+1,args[i]);
+		}
+		ps.executeUpdate();
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}finally{
+		ps.close();
+		conn.close();
+	}
+}
+
+
+public void update4(String sql,RowMapper<T> mapper,T t){
+	Connection conn=null;
+	PreparedStatement ps=null;
+	try{
+		conn=DriverManager.getConnection(url,user,passwd);
+		ps=conn.preparedStatement(sql);
+		mapper.rowMapper(ps,t);
+		ps.executeUpdate();
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}finally{
+		ps.close();
+		conn.close();
+	}
+}
+
+public interface RowMapper<T>{
+	void rowMapper(PreparedStatement ps,T t);
+}
+
+public class MyRowMapper implanments RowMapper<Person>{
+
+	public void rowMapper(PreparedStatement ps,Person per){
+		ps.setInt(1,per.getId());
+		ps.setString(2,per.getName());
+		ps.setString(3,per.getAddress());
+	}
+}
+
+public void batchUpdate5(String sql,RowMapper<T> mapper,List<T> t){
+	Connection conn=null;
+	PreparedStatement ps=null;
+	try{
+		conn=DriverManager.getConnection(url,user,passwd);
+		conn.setAutoCommit(false);
+		ps=conn.preparedStatement(sql);
+		int count=0;
+		for(Person p:t){
+			mapper.rowMapper(ps,t);
+			ps.addBatch();
+			count++;
+			if(count%200==0){
+				ps.executeBatch();
+				conn.conmmit();
+				ps.clearBatch();
+				count=0;
+			}
+		}
+		ps.executeBatch();
+		conn.commit();
+	}finally{
+		ps.close();
+		conn.close();
+	}
+}
+
+coupling 耦合
+Decoupling 解耦
+decoupling
+分离 Separate
+
+public  Map<String, String> Result2Map(ResultSet rs)  
+            throws SQLException {  
+        Map<String, String> hm = new HashMap<String, String>();  
+        ResultSetMetaData rsmd = rs.getMetaData();  
+        int count = rsmd.getColumnCount(); 
+        if(rs.next()) {
+            for (int i = 1; i <= count; i++) {  
+                String key = rsmd.getColumnName(i);  
+                String value = rs.getString(i);  
+                hm.put(key, value);  
+            }  
+            return hm;  
+        }
+        return null;
+    } 
+
+public Map<String,List<String>> handle(ResultSet set) throws SQLException {
+	Map<String,List<String>> map = new HashMap<String,List<String>>();
+
+	ResultSetMetaData rsmd =set.getMetaData();
+	int count = rsmd.getColumnCount();
+	@SuppressWarnings("unchecked")
+	List<String> [] lists = new List[count];
+	
+	for (int i=0;i<lists.length;i++) {
+		lists[i] = new ArrayList<String>();
+		map.put(rsmd.getColumnName(i+1), lists[i]);
+	}
+  while(set.next()){
+	  for(int i=0 ;i<lists.length;i++){
+		  lists[i].add(set.getString(i+1));
+	  }
+  }	
+  return map;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
