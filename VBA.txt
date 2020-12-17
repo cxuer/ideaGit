@@ -1,0 +1,223 @@
+按 alt + f11 打开编辑窗. 复制粘贴以下代码,
+获取表格里的单元格的值
+Public Sub 点点didi3()
+       MsgBox Range("A1").Value
+	   MsgBox Range("B" & ActiveCell.Row).Value2
+End Sub
+
+0,用 len() 函数获得一个字符串长度
+
+Public Sub  点点didi12()
+    
+     my_string = "diandian didi"
+     str_len = Len(my_string)
+     Debug.Print str_len
+ 
+
+End Sub
+
+1, 使用 instr() 判断是不是含某个字符,如果有,就会返回该字符出现的位置
+
+Public Sub diandiandidi12()
+    
+     my_string = "diandian didi"
+     my_exp = "an"
+     
+     Index = InStr(my_string, my_exp)
+    
+     If Index > 0 Then
+        Debug.Print Index
+        
+     Else
+        Debug.Print "sorry ,no find you exp char"
+         
+     End If
+    
+    
+
+End Sub
+ 
+
+如果字符串中有你需要的字符, 就会返回该字符第一次出现的位置, 如果没有,就说下sorry.
+
+2 ,使用 left()  mid() ,right() 截取字符串. 
+
+ left是左截取, 从字符串左边开始,截取你需要的字符个数, right则从右边开始. mid的话,需要你输入字符串截取的位置和函数
+
+接下来给大家演示下这三个函数
+
+Public Sub diandiandidi12()
+    
+     my_string = "start diandian didi end"
+     
+     start_index = 3
+     jiequ_len = 5
+     
+     left_char = Left(my_string, jiequ_len)
+     Debug.Print "left 5 char: " & left_char
+    
+     
+      right_char = Right(my_string, jiequ_len)
+     
+      Debug.Print "right  5 char: " & right_char
+      
+      
+      mid_char = Mid(my_string, start_index, jiequ_len)
+      Debug.Print "mid_char  5 char: " & mid_char
+
+End Sub
+
+3 ,使用 replace() 把字符串中的某个字符替换成其它字符. 接下来把字符串中的an 替换成love
+
+Public Sub diandiandidi12()
+    
+	
+	一、尽量使用VBA原有的属性、方法和Worksheet函数
+由于 Excel 对象多达百多个，对象的属性、方法、事件多不胜数，对于初学者来说可能对它们不全部了解，这就产生了编程者经常编写与Excel对象的属性、方法相同功能的VBA代码段，而这些代码段的运行效率显然与Excel 对象的属性、方法完成任务的速度相差甚大。例如用 Range 的属性 CurrentRegion 来返回 Range 对象，该对象代表当前区。（当前区指以任意空白行及空白列的组合为边界的区域）。同样功能的VBA代码需数十行。因此编程前应尽可能多地了解Excel对象的属性、方法。
+
+
+
+充分利用Worksheet函数是提高程序运行速度的极度有效的方法。
+
+
+
+如求平均工资的例子：
+
+      For Each c In
+         Worksheet(1).Range(″A1:A1000″)
+TotalValue = TotalValue ＋ c.Value
+Next
+AverageValue = TotalValue / Worksheet(1).Range(″A1:A1000″).Rows.Count
+
+
+
+而下面代码程序比上面例子快得多：
+      AverageValue=Application.WorksheetFunction.Average(Worksheets(1).Range( ″
+A1:A1000″))
+
+
+
+其它函数如Count,Counta,Countif,Match,Lookup等等，都能代替相同功能的VBA程序代码，提高程序的运行速度。
+
+
+
+二、尽量减少使用对象引用，尤其在循环中
+每一个 Excel 对象的属性、方法的调用都需要通过 OLE 接口的一个或多个调用，这些 OLE调用都是需要时间的，减少使用对象引用能加快VBA代码的运行。例如：
+
+
+
+1．使用With语句
+Workbooks(1).Sheets(1).Range(″A1:A1000″).Font.Name=″Pay″
+Workbooks(1).Sheets(1).Range(″A1:A1000″).Font.FontStyle=″Bold″ ...
+
+
+
+则以下语句比上面的快
+With Workbooks(1).Sheets(1).Range(″A1:A1000″).Font
+     .Name = ″Pay″
+     .FontStyle = ″Bold″
+     ...
+     End With
+
+
+
+2．使用对象变量
+如果你发现一个对象引用被多次使用，则你可以将此对象用Set 设置为对象变量，以减少
+对对象的访问。如：
+
+
+
+Workbooks(1).Sheets(1).Range(″A1″).Value = 100
+Workbooks(1).Sheets(1).Range(″A2″).Value = 200
+
+
+
+则以下代码比上面的要快：
+Set MySheet = Workbooks(1).Sheets(1)
+MySheet.Range(″A1″).Value = 100
+MySheet.Range(″A2″).Value = 200
+
+
+
+3．在循环中要尽量减少对象的访问
+
+For k = 1 To 1000
+  Sheets(″Sheet1″).Select
+  Cells(k,1).Value = Cells(1,1).Value
+Next k
+
+
+则以下代码比上面的要快：
+
+Set TheValue = Cells(1,1).Value
+Sheets(″Sheet1″).Select
+For k = 1 To 1000
+  Cells(k,1).Value = TheValue
+Next k
+
+三、减少对象的激活和选择
+如果你的通过录制宏来学习VBA的，则你的VBA程序里一定充满了对象的激活和选择，例如Workbooks(XXX).Activate、Sheets(XXX).Select、Range(XXX).Select 等,但事实上大多数情况下这些操作不是必需的。例如：
+
+
+
+Sheets(″Sheet3″).Select
+Range(″A1″).Value = 100
+Range(″A2″).Value = 200
+
+
+可改为：
+
+With Sheets(″Sheet3″)
+  .Range(″A1″).Value = 100
+  .Range(″A2″).Value = 200
+End With
+     my_string = "start diandian didi end"
+     
+     find_char = "an"
+     replace_char = "love"
+     
+     replace_result = Replace(my_string, find_char, replace_char)
+     
+     Debug.Print replace_result
+     
+    
+End Sub
+
+4 ,使用 split() 把字符串按某个字符分割, 接下来把字符串按 an字符进行分割 
+
+      Public Sub diandiandidi12()
+    
+     my_string = "startdiandiandidiend"
+     
+     split_char = "an"
+     
+     split_results = Split(my_string, split_char, -1)
+     
+     For Each result In split_results
+      
+        Debug.Print result
+        
+     Next
+     
+     
+    
+End Sub
+
+split_results = Split(my_string, split_char, -1)  这句中, 最后面的 -1 ,表示返回所有的分割结果, 这里看到,返回了三个分割的结果.
+
+这个分割函数执行后,返回的是一个数组, 也就是split_results是一个数组, 就可以用   split_results(0)    , 哦, 这里的序号是从0开始的. 0 到1到2...
+
+Public Sub diandiandidi12()
+    
+     my_string = "startdiandiandidiend"
+     
+     split_char = "an"
+     
+     split_results = Split(my_string, split_char, -1)
+     
+     Debug.Print "the first split result is : " & split_results(0)
+     
+    
+End Sub
+ 
+ 常用函数的话还有 trim()  ,可以把字符串前后的空字符串去掉, 
